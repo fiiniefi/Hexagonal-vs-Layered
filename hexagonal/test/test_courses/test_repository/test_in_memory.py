@@ -10,9 +10,7 @@ def courses_in_memory_repo(mongo_db):
     return DictCoursesRepository([])
 
 
-def test_courses_mongo_repo_should_be_able_to_save_course(
-    courses_in_memory_repo
-):
+def test_courses_mongo_repo_should_be_able_to_save_course(courses_in_memory_repo):
     # given
     course = course_factory()
 
