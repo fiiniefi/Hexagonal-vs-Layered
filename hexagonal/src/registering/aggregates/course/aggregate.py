@@ -11,7 +11,7 @@ class CourseRegistry:
 
     def withdraw(self) -> None:
         """
-        A place where a registration is being withdrawn. All the students below should
+        A place where a registering is being withdrawn. All the students below should
         be moved upward
         """
         pass

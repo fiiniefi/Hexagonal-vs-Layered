@@ -26,7 +26,7 @@ def register_student(
     student: Student,
     registration_service: RegistrationService = Depends(registration_service_v1),
 ) -> int:
-    """ When registration is successful, an endpoint returns a positive number,
+    """ When registering is successful, an endpoint returns a positive number,
         (number of a user in the group)
         Otherwise a negative number is returned, which is student's place
         in the reserve

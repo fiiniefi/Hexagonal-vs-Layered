@@ -3,7 +3,7 @@ from unittest.mock import Mock
 from starlette.status import HTTP_200_OK, HTTP_201_CREATED
 
 from src.registering.api.dependencies import registration_service_v1
-from src.registering.models import Registration, Student
+from src.registering.models import Registration
 from test.test_registering.factories import student_factory
 from test.test_registering.requests import get_registration, register_student
 

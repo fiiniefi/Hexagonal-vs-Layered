@@ -10,14 +10,10 @@ class MongoRegistrationRepository:
         self.collection = mongo_db()[self.COLLECTION_NAME]
 
     def get_registration(self, course_id: str) -> Registration:
-        registration = self.collection.find({"course_id": course_id})
+        registration = self.collection.find_one({"course_id": course_id})
         if not registration:
             raise NotFound(f"Registration with id {course_id} has not been found")
         return Registration.parse_obj(registration)
 
-    def update_registration(self, course_id: str, student: Student) -> None:
-        self.collection.update_many(
-            {"course_id": course_id},
-            {"$addToSet": {"registered_students": dict(student)}},
-            upsert=True,
-        )
+    def insert(self, registration: Registration) -> None:
+        self.collection.insert_one(dict(registration))

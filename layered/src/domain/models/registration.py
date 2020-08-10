@@ -7,8 +7,10 @@ class Student(BaseModel):
     id: str
     first_name: str
     last_name: str
+    semester: int
 
 
 class Registration(BaseModel):
+    student_id: str
     course_id: str
-    registered_students: List[Student]
+    place: int

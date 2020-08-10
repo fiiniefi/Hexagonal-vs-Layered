@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from src.presentation.registration.endpoints import router as registration_router
+from src.presentation.registering.endpoints import router as registration_router
 from src.presentation.courses.endpoints import router as courses_router
 
 

@@ -14,5 +14,9 @@ class CourseRepository(ABC):
         pass
 
     @abstractmethod
+    def save_course(self, course: Course) -> None:
+        pass
+
+    @abstractmethod
     def update(self, course: Course) -> None:
         pass

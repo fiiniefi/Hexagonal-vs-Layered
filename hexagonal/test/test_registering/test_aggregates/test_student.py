@@ -7,7 +7,6 @@ from src.registering.exceptions import InvalidRegistration
 from test.test_registering.factories import (
     student_factory,
     course_factory,
-    registration_factory,
 )
 
 
@@ -17,9 +16,7 @@ def test_attempt_to_sign_up_for_second_course_at_the_same_time_should_fail():
     student = student_factory(semester=5)
     registered_courses = [course_factory(student_ids=["1"], date_time=course_date_time)]
     course_to_sign = course_factory(student_ids=["1"], date_time=course_date_time)
-    validator = StudentValidator(
-        student, registered_courses, course_to_sign
-    )
+    validator = StudentValidator(student, registered_courses, course_to_sign)
 
     # then
     with raises(InvalidRegistration):
@@ -31,9 +28,7 @@ def test_attempt_to_sign_up_for_course_from_another_semester_than_students_shoul
     student = student_factory(semester=5)
     registered_courses = [course_factory(student_ids=["1"])]
     course_to_sign = course_factory(student_ids=["1"], semester=6)
-    validator = StudentValidator(
-        student, registered_courses, course_to_sign
-    )
+    validator = StudentValidator(student, registered_courses, course_to_sign)
 
     # then
     with raises(InvalidRegistration):
@@ -51,9 +46,7 @@ def test_all_rules_met_should_pass():
     course_to_sign = course_factory(
         student_ids=["1"], semester=5, date_time=course_to_sign_time
     )
-    validator = StudentValidator(
-        student, registered_courses, course_to_sign
-    )
+    validator = StudentValidator(student, registered_courses, course_to_sign)
 
     # then
     validator.validate()
