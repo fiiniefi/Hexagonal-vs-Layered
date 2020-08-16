@@ -5,6 +5,10 @@ from src.registering.models import Course
 
 
 class CourseRepository(ABC):
+    """
+    Interfejs repozytorium bazodanowego (dla kursów w kontekście rejestracji),
+    a więc jego port wtórny. Implementacje możemy znaleźć w plikach fake.py oraz mongo.py.
+    """
     @abstractmethod
     def get_course(self, course_id: str) -> Course:
         pass
@@ -14,9 +18,5 @@ class CourseRepository(ABC):
         pass
 
     @abstractmethod
-    def save_course(self, course: Course) -> None:
-        pass
-
-    @abstractmethod
-    def update(self, course: Course) -> None:
+    def upsert(self, course: Course) -> None:
         pass

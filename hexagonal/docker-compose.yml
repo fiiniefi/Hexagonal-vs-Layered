@@ -1,0 +1,37 @@
+version: '3.3'
+
+services:
+  backend:
+    restart: always
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mongo
+    volumes:
+      - ./:/code
+    tty: true
+    stdin_open: true
+    environment:
+      - PYTHONUNBUFFERED=1
+    ports:
+      - 8000:8000
+    command:
+      - uvicorn
+      - src.app:app
+      - --reload
+      - --reload-dir
+      - src/
+      - --host
+      - 0.0.0.0
+
+  mongo:
+    restart: always
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/mongodb
+
+volumes:
+  mongo:

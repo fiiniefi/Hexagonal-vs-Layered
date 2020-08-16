@@ -6,6 +6,10 @@ from src.courses.models import Course
 
 
 class CoursesRepository(ABC):
+    """
+    Interfejs repozytorium bazodanowego, a więc jego port (jednocześnie pierwotny i wtórny).
+    Implementacje możemy znaleźć w plikach in_memory.py oraz mongo.py.
+    """
     @abstractmethod
     def get_course(self, course_id: str) -> Course:
         pass

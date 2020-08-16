@@ -3,8 +3,8 @@ def get_course(api_client, course_id):
     return api_client.get(url)
 
 
-def save_course(api_client, course_id, course_name):
+def save_course(api_client, course):
     url = "/courses/"
     return api_client.post(
-        url, params={"course_id": course_id, "course_name": course_name}
+        url, json={"course": course.dict()}
     )

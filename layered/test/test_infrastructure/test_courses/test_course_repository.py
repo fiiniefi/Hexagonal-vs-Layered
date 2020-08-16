@@ -3,14 +3,20 @@ from unittest.mock import patch
 from pytest import fixture, raises
 
 from src.exceptions import NotFound
-from src.infrastructure.courses.repository import MongoCoursesRepository
+from src.infrastructure.courses.repository import CoursesRepository
 from test.factories import course_factory
+
+
+"""
+Testy repozytorium courses. Ponieważ warstwa infrastruktury znajduje się najniżej
+i przez to nie zawiera odwołań do innych warstw, testy są "czyste" jak w wersji heksagonalnej.
+"""
 
 
 @fixture
 def courses_repo(mongo_db):
     with patch("src.infrastructure.courses.repository.mongo_db", lambda: mongo_db):
-        yield MongoCoursesRepository()
+        yield CoursesRepository()
 
 
 def test_courses_mongo_repo_should_be_able_to_save_course(mongo_db, courses_repo):
@@ -39,6 +45,8 @@ def test_courses_mongo_repo_should_be_able_to_get_course(courses_repo):
     assert course_in_db == course
 
 
-def test_courses_repo_get_against_empty_collection_should_raise_error(courses_repo,):
+def test_courses_repo_get_against_empty_collection_should_raise_error(
+    courses_repo,
+):
     with raises(NotFound):
         courses_repo.get_course("1")

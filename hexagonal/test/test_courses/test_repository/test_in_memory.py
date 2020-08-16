@@ -5,12 +5,20 @@ from src.courses.repositories.in_memory import DictCoursesRepository
 from test.test_courses.factories import course_factory
 
 
+"""
+Testy implementacji repozytorium działającej w pamięci.
+"""
+
+
 @fixture
 def courses_in_memory_repo(mongo_db):
     return DictCoursesRepository([])
 
 
 def test_courses_mongo_repo_should_be_able_to_save_course(courses_in_memory_repo):
+    """
+    Test sprawdzający, czy repozytorium "potrafi" poprawnie zapisać kurs.
+    """
     # given
     course = course_factory()
 
@@ -22,6 +30,9 @@ def test_courses_mongo_repo_should_be_able_to_save_course(courses_in_memory_repo
 
 
 def test_courses_mongo_repo_should_be_able_to_get_course(courses_in_memory_repo):
+    """
+    Test sprawdzający, czy repozytorium "potrafi" pobrać istniejący kurs.
+    """
     # given
     course_id = "1"
     course = course_factory(course_id=course_id)
@@ -37,5 +48,9 @@ def test_courses_mongo_repo_should_be_able_to_get_course(courses_in_memory_repo)
 def test_courses_repo_get_against_empty_collection_should_raise_error(
     courses_in_memory_repo,
 ):
+    """
+    Test sprawdzający, czy repozytorium "potrafi" poinformować użytkownika o braku kursu,
+    do którego ten próbuje się odwołać.
+    """
     with raises(NotFound):
         courses_in_memory_repo.get_course("1")

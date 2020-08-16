@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from pytest import fixture
 from starlette.testclient import TestClient
 
-from src.app import APIBuilder
+from src.builder import APIBuilder
 from test.settings import MongoSettings
 
 

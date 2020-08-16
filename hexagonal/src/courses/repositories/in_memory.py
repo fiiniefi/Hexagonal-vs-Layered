@@ -7,6 +7,10 @@ from src.courses.repositories.base import CoursesRepository
 
 
 class DictCoursesRepository(CoursesRepository):
+    """
+    Implementacja portu repozytorium (adapter jednocześnie pierwotny i wtórny) przechowująca dane w pamięci.
+    Jej użytecznosć sprowadza się jedynie do testów - robi za "fałszywkę".
+    """
     def __init__(self, courses: List[Course]) -> None:
         self.courses = {course.id: course for course in courses}
 
@@ -14,7 +18,7 @@ class DictCoursesRepository(CoursesRepository):
         try:
             return self.courses[course_id]
         except KeyError:
-            raise NotFound(f"Course with id {course_id} has not been found")
+            raise NotFound(f"Course with id {course_id} was not found")
 
     def get_courses(self, course_ids: List[str]) -> List[Course]:
         return [self.courses[course_id] for course_id in course_ids]

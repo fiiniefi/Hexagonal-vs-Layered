@@ -6,6 +6,15 @@ from test.factories import registration_factory, student_factory
 from test.requests import get_registration, register_student
 
 
+"""
+Testy warstwy prezentacji dla funkcjonalności z registering.
+Ponieważ w architekturze warstwowej nie ma portów i adapterów, testy
+podstawiają mocka za zależność w postaci serwisu Registration.
+Sprawdzają jedynie, czy warstwa prezentacji działa poprawnie w oderwaniu
+od reszty implementacji funkcjonalności.
+"""
+
+
 def test_get_course_registration_calls_correctly(api_client):
     # given
     registration = registration_factory()

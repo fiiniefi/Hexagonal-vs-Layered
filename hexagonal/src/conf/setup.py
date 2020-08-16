@@ -5,7 +5,12 @@ from src.conf.settings import MongoSettings
 
 
 def mongo_client() -> MongoClient:
-    return MongoClient(MongoSettings.MONGO_HOST, MongoSettings.MONGO_PORT)
+    """
+    Połączenie z serwerem MongoDB
+    """
+    return MongoClient(
+        f"mongodb://{MongoSettings.MONGO_HOST}:{MongoSettings.MONGO_PORT}/"
+    )
 
 
 def mongo_db() -> Database:

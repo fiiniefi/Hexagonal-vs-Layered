@@ -12,7 +12,7 @@ def course_factory(
     id="1",
     name="AiSD",
     semester=5,
-    date_time=datetime.now(),
+    date_time="wt",
     type="seminar",
 ):
     return Course(
